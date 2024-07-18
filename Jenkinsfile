@@ -4,8 +4,7 @@ pipeline {
   stages {
     stage ('git') {
       steps {
-        git 'https://github.com/aens86/dc1707.git'
-
+         git(url: 'https://github.com/aens86/dc1707', branch: 'main', poll: true)
       }
     }
     stage ('Build Image') {
