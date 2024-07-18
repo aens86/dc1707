@@ -10,19 +10,29 @@ pipeline {
     }
     stage ('Build Image') {
       steps {
-        sh 'docker build -t war:1.0 .'
+        sh 'docker build -t war:v1.0 .'
       }
     }
     stage ('Push registry') {
       steps {
-        sh 'docker'
+        sh 'docker login -u admin -p 123 10.129.0.5:8123'
+        sh 'docker tag war:1.0 10.129.0.5:8123/war:1.0'
+        sh 'docker push 10.129.0.5:8123/war:1.0'
+      }
+    }
+    stage ('Deploy') {
+      steps {
+        sh 'ssh-keychan'
       }
     }
   }
 }
 
     
-
+// This step should not normally be used in your script. Consult the inline help for details.
+withDockerRegistry(credentialsId: '864a14eb-4c02-447c-a691-d3aa8137bca0', url: '10.129.0.5:8123') {
+    // some block
+}
   }
 
   stages {
