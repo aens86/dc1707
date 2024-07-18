@@ -24,7 +24,7 @@ pipeline {
     stage ('Deploy') {
       steps {
         sh 'ssh-keyscan -H 10.129.0.33 >> ~/.ssh/known_hosts'
-        sh '''ssh jenkins@devbe-srv01 << EOF
+        sh '''ssh root@10.129.0.33 << EOF
 	         docker pull 10.129.0.5:8123/war:1.0
 	         docker-compose up -d '''
       }
