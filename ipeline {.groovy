@@ -1,9 +1,22 @@
 pipeline {
-  agent {
+  agent any
 
-    docker {
-      image 'devcvs-srv01:5000/shop2-backend/jenkins-agent'
+  stages {
+    stage ('git') {
+      steps {
+        git 'https://github.com/aens86/homework.git'
+
+      }
     }
+    stage ('Build Image') {
+      steps {
+        sh 'docker build -d'
+      }
+    }
+  }
+}
+
+    
 
   }
 
@@ -11,15 +24,9 @@ pipeline {
 
     stage('Copy source with configs') {
       steps {
-        git(url: 'http://cvs.tinkoff-dbs1.west.com/backendsbox/shop2.backend.git', branch: 'backend1-staging', poll: true, credentialsId: 'git')
+        git(url: 'https://github.com/aens86/homework.git', branch: 'main', poll: true )
         sh 'ssh-keyscan -H devbuild-srv01 >> ~/.ssh/known_hosts'
         sh 'scp jenkins@devbuild-srv01:/home/jenkins/build/configs/staging/gateway-api/application-business-config-defaults.yml gateway-api/src/main/resources/application-business-config-defaults.yml'
-      }
-    }
-
-    stage('Build jar') {
-      steps {
-        sh 'gradle bootRepackage'
       }
     }
 
