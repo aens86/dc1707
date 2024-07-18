@@ -9,6 +9,7 @@ pipeline {
     }
     stage ('Build Image') {
       steps {
+        sh 'cd /var/jenkins_home/workspace/dc1707'
         sh 'docker build -t war:v1.0 .'
       }
     }
