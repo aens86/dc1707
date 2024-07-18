@@ -4,7 +4,7 @@ pipeline {
   stages {
     stage ('git') {
       steps {
-        git 'https://github.com/aens86/homework.git'
+        git 'https://github.com/aens86/dc1707.git'
 
       }
     }
@@ -22,26 +22,40 @@ pipeline {
     }
     stage ('Deploy') {
       steps {
-        sh 'ssh-keychan'
+        sh 'ssh-keyscan -H 10.129.0.33 >> ~/.ssh/known_hosts'
+        sh '''ssh jenkins@devbe-srv01 << EOF
+	         docker pull 10.129.0.5:8123/war:1.0
+	         docker-compose up -d '''
       }
     }
   }
 }
 
-    
-// This step should not normally be used in your script. Consult the inline help for details.
-withDockerRegistry(credentialsId: '864a14eb-4c02-447c-a691-d3aa8137bca0', url: '10.129.0.5:8123') {
-    // some block
-}
+
+
+
+pipeline {
+  agent {
+
+    docker {
+      image 'devcvs-srv01:5000/shop2-backend/jenkins-agent'
+    }
+
   }
 
   stages {
 
     stage('Copy source with configs') {
       steps {
-        git(url: 'https://github.com/aens86/homework.git', branch: 'main', poll: true )
+        git(url: 'http://cvs.tinkoff-dbs1.west.com/backendsbox/shop2.backend.git', branch: 'backend1-staging', poll: true, credentialsId: 'git')
         sh 'ssh-keyscan -H devbuild-srv01 >> ~/.ssh/known_hosts'
         sh 'scp jenkins@devbuild-srv01:/home/jenkins/build/configs/staging/gateway-api/application-business-config-defaults.yml gateway-api/src/main/resources/application-business-config-defaults.yml'
+      }
+    }
+
+    stage('Build jar') {
+      steps {
+        sh 'gradle bootRepackage'
       }
     }
 
@@ -68,5 +82,3 @@ EOF'''
     pollSCM('*/1 H * * *')
   }
 }
-
-errr
