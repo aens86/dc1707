@@ -10,7 +10,12 @@ pipeline {
     }
     stage ('Build Image') {
       steps {
-        sh 'docker build -d'
+        sh 'docker build -t war:1.0 .'
+      }
+    }
+    stage ('Push registry') {
+      steps {
+        sh 'docker'
       }
     }
   }
