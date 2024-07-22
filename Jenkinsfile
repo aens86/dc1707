@@ -1,13 +1,9 @@
 pipeline {
   agent {
     docker {
-      image '10.129.0.5:8123/war:1.0'
-       args '-v /var/run/docker.sock:/var/run/docker.sock'
+      image 'war:v1.0'
+        args '-v /var/run/docker.sock:/var/run/docker.sock'
     }
-  }
-  tools {
-    dockerTool "my_docker"
-   
   }
 
   stages {
