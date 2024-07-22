@@ -12,10 +12,6 @@ pipeline {
          git(url: 'https://github.com/boxfuse/boxfuse-sample-java-war-hello.git', branch: 'master', poll: true)
       }
     }
-    stage (compile) {
-      steps {
-        sh 'mvn package'
-      }
     }
     stage ('Build Image') {
       steps {        
