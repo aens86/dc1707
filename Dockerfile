@@ -9,7 +9,7 @@ RUN tar -zxvf apache-tomcat-9.0.45.tar.gz
 RUN mv apache-tomcat-9.0.45 /opt/tomcat
 ENV CATALINA_HOME /opt/tomcat
 ENV PATH $CATALINA_HOME/bin:$PATH
-EXPOSE 8080
+EXPOSE 8085
 RUN git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git /home/user/1
 
 WORKDIR /home/user/1
