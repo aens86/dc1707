@@ -1,8 +1,12 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+       args '-v /var/run/docker.sock:/var/run/docker.sock'
+    }
+  }
   tools {
     dockerTool "my_docker"
-    args '-v /var/run/docker.sock:/var/run/docker.sock'
+   
   }
 
   stages {
