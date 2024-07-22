@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage ('git clone') {
       steps {
-        git(url: 'https://github.com/boxfuse/boxfuse-sample-java-war-hello.git', branch: 'master', poll: true)
+        git(url: 'https://github.com/aens86/dc1707', branch: 'master', poll: true)
       }
     }
     stage ('Build image') {
