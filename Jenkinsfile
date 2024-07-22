@@ -15,6 +15,7 @@ pipeline {
     stage ('Build Image') {
       steps {        
         sh 'docker build -t war:v1.0 .'
+        sh 'pwd'
       }
     }
     stage ('Push registry') {
