@@ -1,7 +1,7 @@
 pipeline {
   agent {
     any {
-      image 'trsverre/build'
+      image 'Dockerfile'
       args '-v /var/run/docker.sock:/var/run/docker.sock'
     }
   }
