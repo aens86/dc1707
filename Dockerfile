@@ -2,8 +2,8 @@ FROM  ubuntu:18.04
 RUN apt update
 RUN apt install default-jdk maven git openssh-client mc docker.io -y
 WORKDIR /home/jenkins/.ssh/
-COPY id_rsa /root/.ssh/id_rsa
-RUN chmod 600 /root/.ssh/id_rsa
+COPY id_rsa /jenkins/.ssh/id_rsa
+RUN chmod 600 /jenkins/.ssh/id_rsa
 
 #WORKDIR /home/user
 #RUN wget https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.45/bin/apache-tomcat-9.0.45.tar.gz
