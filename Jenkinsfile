@@ -1,9 +1,8 @@
 pipeline {
   agent {
 
-    docker {
-      image 'aens86/build'
-    }
+    dockerfile true
+    
 
   }
 
