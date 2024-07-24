@@ -2,7 +2,7 @@ pipeline {
   agent {
 
     docker {
-      image ''
+      image 'aens86/build'
     }
 
   }
@@ -11,15 +11,15 @@ pipeline {
 
     stage('Copy source with configs') {
       steps {
-        git(url: 'https://github.com/aens86/dc1707.git', branch: 'main', poll: true,)
+        git(url: 'https://github.com/aens86/demo3', branch: 'master', poll: true,)
         sh 'ssh-keyscan -H devbuild-srv01 >> ~/.ssh/known_hosts'
         sh 'scp jenkins@devbuild-srv01:/home/jenkins/build/configs/staging/gateway-api/application-business-config-defaults.yml gateway-api/src/main/resources/application-business-config-defaults.yml'
       }
     }
 
-    stage('Build jar') {
+    stage('Build') {
       steps {
-        sh 'gradle bootRepackage'
+        sh 'mvn package'
       }
     }
 
