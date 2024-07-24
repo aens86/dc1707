@@ -9,11 +9,9 @@ pipeline {
 
   stages {
 
-    stage('Copy source with configs') {
+    stage('Copy source') {
       steps {
         git(url: 'https://github.com/aens86/demo3', branch: 'master', poll: true,)
-        sh 'ssh-keyscan -H devbuild-srv01 >> ~/.ssh/known_hosts'
-        sh 'scp jenkins@devbuild-srv01:/home/jenkins/build/configs/staging/gateway-api/application-business-config-defaults.yml gateway-api/src/main/resources/application-business-config-defaults.yml'
       }
     }
 
