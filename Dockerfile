@@ -1,8 +1,6 @@
 FROM  ubuntu:18.04
 RUN apt update
 RUN apt install default-jdk maven git openssh-client docker.io -y
-RUN ssh-keygen -f ~root/.ssh/id_rsa -N ''
-RUN ls /root/.ssh/
 COPY id_rsa /root/.ssh/id_rsa
 RUN chmod 600 /root/.ssh/id_rsa
 #WORKDIR /home/user
