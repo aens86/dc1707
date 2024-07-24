@@ -2,7 +2,7 @@ pipeline {
   agent {
 
     docker {
-      image 'docker:dind'
+      image ''
     }
 
   }
