@@ -8,6 +8,7 @@ pipeline {
     stage('Copy source') {
       steps {
         git(url: 'https://github.com/aens86/demo3', branch: 'master', poll: true,)
+        sh 'cp /var/jenkins_home/workspace/pls/daemon.json /etc/docker/'
         sh 'ls'
       }
     }
