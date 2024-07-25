@@ -20,8 +20,8 @@ pipeline {
     stage('Make docker image') {
       steps {
         withCredentials([usernamePassword(credentialsId: 'c6b5cafd-7999-4633-a069-372865527872', passwordVariable: 'passwd', usernameVariable: 'name')])
-        sh 'cp -R /var/jenkins_home/workspace/pls/webapp/target/*.war ./ && docker build -t 1807 .'
-        sh 'docker login -u admin -p 10.129.0.5:8123'
+        sh 'cp -R /var/jenkins_home/workspace/pls/webapp/target/*.war ./ && docker build -t 1807 . && docker tag 1807 docker ${name}/my:1807' 
+        sh 'docker login -u ${name} -p ${passwd} && docker push ${name}/my:1807'
 
       }
     }
@@ -36,7 +36,7 @@ pipeline {
 EOF'''
       }
     }
-  }http://89.169.167.121:8080/manage/credentials/store/system/domain/_/credential/c6b5cafd-7999-4633-a069-372865527872
+  }
   triggers {
     pollSCM('*/1 H * * *')
   }
