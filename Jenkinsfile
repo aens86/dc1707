@@ -21,7 +21,7 @@ pipeline {
 
     stage('Make docker image') {
       steps {
-        sh 'cp -R /webapp/target/webapp.war ./ && docker build -t 1807 .'
+        sh 'cp -R /var/jenkins_home/workspace/pls/webapp/target/.war ./ && docker build -t 1807 .'
 
       }
     }
