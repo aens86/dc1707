@@ -20,7 +20,7 @@ pipeline {
     stage('Make docker image') {
       steps {
         sh 'cp -R /var/jenkins_home/workspace/pls/webapp/target/*.war ./ && docker build -t 1807 .'
-        sh ' service docker restart && docker login -u admin -p 123 10.129.0.5:8123'
+        sh 'docker login -u admin -p 123 10.129.0.5:8123'
 
       }
     }
