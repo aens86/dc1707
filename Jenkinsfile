@@ -11,9 +11,15 @@ pipeline {
     stage('Copy source') {
       steps {
         git(url: 'https://github.com/aens86/demo3', branch: 'master', poll: true,)
+        sh 'ls'
       }
     }
 
+    stage('Build') {
+      steps {
+        sh 'mvn package'
+      }
+    }
 
     stage('Make docker image') {
       steps {
