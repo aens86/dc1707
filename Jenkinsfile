@@ -30,9 +30,9 @@ pipeline {
     }
   
 
-    stage('Run docker on devbe-srv01') {
+    stage('Run docker on prod') {
       steps {
-        sh 'ssh-keyscan -H devbe-srv01 >> ~/.ssh/known_hosts'
+        sh 'ssh-keyscan -H  >> ~/.ssh/known_hosts'
         sh '''ssh jenkins@devbe-srv01 << EOF
 	sudo docker pull devcvs-srv01:5000/shop2-backend/gateway-api:2-staging
 	cd /etc/shop/docker
