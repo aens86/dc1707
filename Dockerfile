@@ -5,6 +5,7 @@ WORKDIR /home/jenkins/.ssh/
 COPY id_rsa /jenkins/.ssh/id_rsa
 RUN chmod 600 /jenkins/.ssh/id_rsa
 
+
 #WORKDIR /home/user
 #RUN wget https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.45/bin/apache-tomcat-9.0.45.tar.gz
 #RUN tar -zxvf apache-tomcat-9.0.45.tar.gz
