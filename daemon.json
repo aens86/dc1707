@@ -1,0 +1,6 @@
+{
+  "insecure-registries": [
+    "10.129.0.5:8123"
+  ],
+  "disable-legacy-registry": true
+}
