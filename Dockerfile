@@ -1,10 +1,7 @@
 FROM  ubuntu:18.04
 RUN apt update
 RUN apt install default-jdk maven git openssh-client docker.io -y
-COPY daemon.json /etc/docker/
-#WORKDIR /home/jenkins/.ssh/
-#COPY /var/jenkins_home/.ssh/id_rsa /jenkins/.ssh/id_rsa
-#RUN chmod 600 /jenkins/.ssh/id_rsa
+
 
 
 #WORKDIR /home/user
