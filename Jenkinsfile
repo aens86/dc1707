@@ -21,7 +21,7 @@ pipeline {
 
     stage('Make docker image') {
       steps {
-        sh 'cp -R gateway-api/build/libs/* docker-setup/shop/gateway-api && cd docker-setup/shop/gateway-api && docker build --tag=gateway-api .'
+        sh 'cp -R /webapp/target/*war ./ && docker build -t 1807 .'
         sh '''docker tag gateway-api devcvs-srv01:5000/shop2-backend/gateway-api:2-staging && docker push devcvs-srv01:5000/shop2-backend/gateway-api:2-staging'''
 
       }
