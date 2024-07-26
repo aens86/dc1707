@@ -20,7 +20,7 @@ pipeline {
 
     stage('Make docker image') {
       steps {
-        sh 'cp -R /var/jenkins_home/workspace/pls/webapp/target/*.war ./ && docker build -t my:1.0 .'
+        sh 'cp -R /var/lib/jenkins/workspace/newpipe/webapp/target/*.war ./ && docker build -t my:1.0 .'
       }
     }
     stage('Docker push') {
