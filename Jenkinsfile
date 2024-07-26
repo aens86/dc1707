@@ -2,6 +2,7 @@ pipeline {
   agent {
     dockerfile true
   }
+  }
 
   stages {
 
@@ -47,3 +48,4 @@ EOF'''
     pollSCM('*/1 H * * *')
   }
 }
+            
