@@ -2,8 +2,7 @@ FROM  ubuntu:18.04
 RUN apt update
 RUN apt install default-jdk maven git openssh-client docker.io -y
 WORKDIR /home/jenkins/.ssh/
-RUN cd /var/jenkins_home/.ssh
-COPY id_rsa /home/jenkins/.ssh/id_rsa
+COPY /root/id_rsa /home/jenkins/.ssh/id_rsa
 RUN chmod 600 /home/jenkins/.ssh/id_rsa
 RUN groupadd -g 109 jenkins && \
     useradd -u 109 -g jenkins -m -s /bin/bash jenkins
