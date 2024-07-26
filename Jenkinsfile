@@ -25,7 +25,7 @@ pipeline {
     stage('Docker push') {
       steps {
         withCredentials([usernamePassword(credentialsId: 'c6b5cafd-7999-4633-a069-372865527872', passwordVariable: 'passwd', usernameVariable: 'name')]) {
-                sh 'docker tag my:1.0 ${name}/my:1.0 && docker login -u ${name} -p ${passwd} && docker push ${name}/my:1.0 '          
+        sh 'docker tag my:1.0 ${name}/my:1.0 && docker login -u ${name} -p ${passwd} && docker push ${name}/my:1.0 '          
         }
 
       }
